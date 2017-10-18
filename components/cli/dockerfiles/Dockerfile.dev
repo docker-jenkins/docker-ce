@@ -1,7 +1,6 @@
+FROM    golang:1.8.3
 
-FROM    golang:1.8.3-alpine
-
-RUN     apk add -U git make bash coreutils
+RUN     apt-get update && apt-get install -y git make bash coreutils
 
 ARG     VNDR_SHA=a6e196d8b4b0cbbdc29aebdb20c59ac6926bb384
 RUN     go get -d github.com/LK4D4/vndr && \
