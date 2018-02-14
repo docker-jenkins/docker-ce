@@ -1,6 +1,6 @@
 // +build linux freebsd
 
-package daemon
+package daemon // import "github.com/docker/docker/daemon"
 
 import (
 	"bufio"
@@ -101,6 +101,10 @@ func getMemoryResources(config containertypes.Resources) *specs.LinuxMemory {
 	if config.MemorySwappiness != nil {
 		swappiness := uint64(*config.MemorySwappiness)
 		memory.Swappiness = &swappiness
+	}
+
+	if config.OomKillDisable != nil {
+		memory.DisableOOMKiller = config.OomKillDisable
 	}
 
 	if config.KernelMemory != 0 {
